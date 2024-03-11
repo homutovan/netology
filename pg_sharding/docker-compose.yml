@@ -1,0 +1,7 @@
+version: '3'
+services:
+  pgsql_1:
+    image: ubuntu:latest
+
+  pwsql_2:
+    image: ubuntu:latest

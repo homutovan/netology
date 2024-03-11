@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  master:
+    image: postgres
+    container_name: psql1
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    networks:
+      cluster_net:
+        ipv4_address: 172.16.100.10
+
+  slave:
+    image: postgres
+    container_name: psql2
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    # volumes:
+    #   - ./slave:/var/lib/postgresql/data
+
+    networks:
+      cluster_net:
+        ipv4_address: 172.16.100.11
+
+networks:
+  cluster_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.100.0/24
+          gateway: 172.16.100.1
+

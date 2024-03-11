@@ -1,0 +1,11 @@
+version: '3'
+services:
+  master:
+    container_name: pqsql1
+    build: .
+    entrypoint: ./master/entrypoint.sh
+
+
+  slave:
+    container_name: pqsql2
+    build: .

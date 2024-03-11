@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+
+  master:
+    image: postgres:latest
+    container_name: psql1
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 15432:5432

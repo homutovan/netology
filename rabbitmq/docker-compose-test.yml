@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  rabbit-1:
+    image: rabbitmq:3.12.7-management
+    # build: .
+    hostname: rabbitmq1
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE}
+      RABBITMQ_CONFIG_FILE: /config/rabbitmq
+      RABBITMQ_NODE_PORT: 5672
+    volumes:
+      - ./config/:/config
+    ports:
+      - 5672:5672
+      - 15672:15672
+    restart: always
+
+  rabbit-2:
+    image: rabbitmq:3.12.7-management
+    hostname: rabbitmq2
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      RABBITMQ_ERLANG_COOKIE: 12345
+      RABBITMQ_CONFIG_FILE: /config/rabbitmq
+      RABBITMQ_NODE_PORT: 5673
+    ports:
+      - 5673:5672
+      - 15673:15673
+    volumes:
+      - ./config/:/config
+    restart: always
+

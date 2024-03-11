@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+ ClickHouse-Server:
+   image: yandex/clickhouse-server
+   container_name: ClickHouse
+   ports:
+     - "8123:8123"
+     - "9000:9000"
+   volumes:
+     - ./db:/var/lib/clickhouse
+#      - ./users.xml:/etc/clickhouse-server/users.xml:rw
